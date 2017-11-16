@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_application">
+    <sys_app_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category/>
+        <description/>
+        <device_type>browser</device_type>
+        <hint/>
+        <name>Scheduler</name>
+        <order/>
+        <roles>x_mukl_scheduler.user</roles>
+        <sys_class_name>sys_app_application</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 13:49:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1aca020adbda0700b7065a6adc9619f5</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Scheduler</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sys_app_application_1aca020adbda0700b7065a6adc9619f5</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-09 13:49:20</sys_updated_on>
+        <title>Scheduler</title>
+        <view_name/>
+    </sys_app_application>
+</record_update>

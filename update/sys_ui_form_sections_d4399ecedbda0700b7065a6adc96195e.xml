@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="d4399ecedbda0700b7065a6adc96195e" sys_domain="global" table="x_mukl_scheduler_scheduler" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 14:52:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1c399ecedbda0700b7065a6adc961960</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_mukl_scheduler_scheduler" name="x_mukl_scheduler_scheduler" sys_domain="global" view="Default view">d4399ecedbda0700b7065a6adc96195e</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_mukl_scheduler_scheduler" sys_domain="global" view="Default view">ecbb0e0adbda0700b7065a6adc961993</sys_ui_section>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 14:52:17</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 14:52:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>18399ecedbda0700b7065a6adc961961</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_mukl_scheduler_scheduler" name="x_mukl_scheduler_scheduler" sys_domain="global" view="Default view">d4399ecedbda0700b7065a6adc96195e</sys_ui_form>
+            <sys_ui_section caption="Generate appointment Dates" display_value="Generate appointment Dates" name="x_mukl_scheduler_scheduler" sys_domain="global" view="Default view">98399ecedbda0700b7065a6adc96195d</sys_ui_section>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 14:52:17</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_mukl_scheduler_scheduler</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 14:52:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d4399ecedbda0700b7065a6adc96195e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_mukl_scheduler_scheduler</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name>sys_ui_form_sections_d4399ecedbda0700b7065a6adc96195e</sys_update_name>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 14:52:17</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

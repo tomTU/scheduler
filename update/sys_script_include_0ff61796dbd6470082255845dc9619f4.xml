@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_mukl_scheduler.tuSchedulerAppUtils</api_name>
+        <client_callable>false</client_callable>
+        <description>Scripts required for Scheduler app</description>
+        <name>tuSchedulerAppUtils</name>
+        <script><![CDATA[var tuSchedulerAppUtils = Class.create();
+tuSchedulerAppUtils.prototype = {
+	initialize: function() {
+		this.daysOfTheWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+		this.monthsOfTheYear = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+	},
+
+	createDaysArray: function(startDate) {
+		var days = []; // Array to contain arrays of appointments on each day
+
+		// Set the first date, we will calculate a few days worth of records from this, and as the user changes date, recalculate the required records
+		var gdt = new GlideDateTime(startDate + " 12:00:00");
+
+		// This loop is for each day
+		for (var i = 0; i < 3; i++) {
+
+			// Inside this loop, we need to run a query for each day and return all appointments
+			var appointments = this.createAppointmentsArray(gdt);
+
+			days.push(appointments);
+			gdt.addDaysLocalTime(1);
+		}
+
+		return days;
+	},
+
+	createAppointmentsArray: function(gdt) {
+		// Given a glideDateTime, return day (array) of appointments (objects) where array[0] is the date
+		var appointments = [];
+		var thisDate = this.getDate(gdt); // gdt.getDate() wasn't working here
+		var thisDisplayDate = this.daysOfTheWeek[gdt.getDayOfWeekLocalTime() - 1] + 
+							" - " + gdt.getDayOfMonthLocalTime() + 
+							" " + this.monthsOfTheYear[gdt.getMonthLocalTime() - 1] + 
+							" " + gdt.getYearLocalTime();
+// 		gs.info("this.daysOfTheWeek[gdt.getDayOfWeekLocalTime()]: " + this.daysOfTheWeek[gdt.getDayOfWeekLocalTime()] + 
+// 			   " - gdt.getDayOfWeekLocalTime(): " + gdt.getDayOfWeekLocalTime() + 
+// 			   " - gdt: " + gdt);
+// 		thisDisplayDate = thisDate.toString() == (new GlideDate()).toString() ? "Today" : this.getDate(gdt.getDisplayValue());
+		thisDisplayDate = thisDate.toString() == (new GlideDate()).toString() ? "Today" : thisDisplayDate;
+
+		appointments.push({
+			date: thisDate,
+			display: thisDisplayDate
+		});
+
+		// Get all appointments relating to this day
+		var grApp = new GlideRecord('x_mukl_scheduler_appointment');
+		grApp.addQuery('appointment_date', gdt.getDate());
+		grApp.addQuery('active', true);
+		grApp.orderBy('appointment_start');
+		grApp.query();
+
+		var count = 1;
+		while (grApp.next()) {
+			appointments[count] = {
+				"date": thisDate,
+				"start": this.getTime(grApp.appointment_start).substring(0,5),
+				"booked": grApp.requested_for.nil() ? false : true,
+				"sys_id": grApp.getUniqueValue()
+			};
+			count++;
+		}
+		return appointments;
+	},
+
+	getTime: function(gdt) {
+		var time = gdt.toString().contains(" ") ? gdt.toString().split(" ")[1] : gdt;
+		return time;
+	},
+
+	getDate: function(gdt) {
+		var date = gdt.toString().contains(" ") ? gdt.toString().split(" ")[0] : gdt;
+		return date;
+	},
+
+	type: 'tuSchedulerAppUtils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-10 14:03:22</sys_created_on>
+        <sys_id>0ff61796dbd6470082255845dc9619f4</sys_id>
+        <sys_mod_count>31</sys_mod_count>
+        <sys_name>tuSchedulerAppUtils</sys_name>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sys_script_include_0ff61796dbd6470082255845dc9619f4</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-15 11:14:46</sys_updated_on>
+    </sys_script_include>
+</record_update>

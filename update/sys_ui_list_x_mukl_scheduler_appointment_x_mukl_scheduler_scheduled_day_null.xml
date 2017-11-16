@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="x_mukl_scheduler_scheduled_day" relationship="" sys_domain="global" table="x_mukl_scheduler_appointment" version="2" view="">
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_mukl_scheduler_appointment</name>
+            <parent>x_mukl_scheduler_scheduled_day</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-10 11:40:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b8e63252db96470082255845dc96197d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name/>
+            <sys_package/>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name/>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-10 11:40:30</sys_updated_on>
+            <sys_user display_value="Tom Cumins">4e9c31c2db5e070082255845dc96191b</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

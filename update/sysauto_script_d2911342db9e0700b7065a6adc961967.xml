@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sysauto_script">
+    <sysauto_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <conditional>false</conditional>
+        <name>Set old Appointments inactive</name>
+        <run_as display_value="Tom Cumins">4e9c31c2db5e070082255845dc96191b</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_period/>
+        <run_start>2017-11-09 18:58:43</run_start>
+        <run_time>1970-01-01 22:00:00</run_time>
+        <run_type>daily</run_type>
+        <script><![CDATA[// Sets all appointments in the past to inactive
+
+(function() {
+	
+	var gr = new GlideRecord('x_mukl_scheduler_scheduled_day');
+	gr.addQuery('date', new GlideDate());
+	gr.query();
+	gs.info(gr.hasNext() + " on date: " + new GlideDate());
+	
+	while (gr.next()) {
+		
+		// Begin by setting all appointments inactive
+		var grApp = new GlideRecord('x_mukl_scheduler_appointment');
+		grApp.addQuery('date', gr.sys_id);
+		grApp.query();
+		grApp.setValue('active', false);
+		grApp.updateMultiple();
+		
+		// Update Scheduled days to inactive
+		gr.active = false;
+		gr.update();
+		
+	}
+	
+})();]]></script>
+        <sys_class_name>sysauto_script</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 19:03:34</sys_created_on>
+        <sys_id>d2911342db9e0700b7065a6adc961967</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Set old Appointments inactive</sys_name>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sysauto_script_d2911342db9e0700b7065a6adc961967</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-09 19:06:29</sys_updated_on>
+        <upgrade_safe>false</upgrade_safe>
+    </sysauto_script>
+</record_update>

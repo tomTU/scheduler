@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_related sys_domain="global" table="x_mukl_scheduler_scheduled_day" version="2" view="">
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Scheduled Day - Default view" name="x_mukl_scheduler_scheduled_day" related_list="NULL" sys_domain="global" view="Default view">ccc37acedb1e0700b7065a6adc9619f4</list_id>
+            <order_by/>
+            <position>0</position>
+            <related_list>x_mukl_scheduler_appointment.date</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 16:48:18</sys_created_on>
+            <sys_id>84c37acedb1e0700b7065a6adc9619f5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 16:48:18</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list action="INSERT_OR_UPDATE">
+            <calculated_name>Scheduled Day - Default view</calculated_name>
+            <filter/>
+            <name>x_mukl_scheduler_scheduled_day</name>
+            <order_by/>
+            <position/>
+            <related_list/>
+            <sys_class_name>sys_ui_related_list</sys_class_name>
+            <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 16:48:18</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ccc37acedb1e0700b7065a6adc9619f4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Scheduled Day - Default view</sys_name>
+            <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name>sys_ui_related_x_mukl_scheduler_scheduled_day_null</sys_update_name>
+            <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 16:48:18</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_related_list>
+    </sys_ui_related>
+</record_update>

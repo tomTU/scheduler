@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <css/>
+        <draft>false</draft>
+        <id>scheduler</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description>Page to view and select appointments</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 19:35:05</sys_created_on>
+        <sys_id>17a9db06db9e0700b7065a6adc9619fc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>scheduler</sys_name>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sp_page_17a9db06db9e0700b7065a6adc9619fc</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-09 19:35:05</sys_updated_on>
+        <title>Scheduler</title>
+    </sp_page>
+    <sys_translated_text action="delete_multiple" query="documentkey=17a9db06db9e0700b7065a6adc9619fc"/>
+</record_update>

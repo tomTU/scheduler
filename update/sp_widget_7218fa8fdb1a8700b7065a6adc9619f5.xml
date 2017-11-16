@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope) {
+	/* widget controller */
+	var c = this;
+
+	$scope.today = function() {
+		$scope.dt = new Date();
+	};
+	$scope.today();
+
+	$scope.options = {
+		//customClass: getDayClass(date, mode),
+		minDate: new Date(),
+		showWeeks: false
+	};
+
+	$scope.open1 = function() {
+		$scope.popup1.opened = true;
+	};
+
+	$scope.popup1 = {
+		opened: false
+	};
+
+	$scope.setDate = function(year, month, day) {
+		$scope.dt = new Date(year, month, day);
+	};
+
+	$scope.altInputFormats = ['M!/d!/yyyy'];
+
+	var tomorrow = new Date();
+	tomorrow.setDate(tomorrow.getDate() + 1);
+	var afterTomorrow = new Date(tomorrow);
+	afterTomorrow.setDate(tomorrow.getDate() + 1);
+	$scope.events = [
+		{
+			date: tomorrow,
+			status: 'full'
+		},
+		{
+			date: afterTomorrow,
+			status: 'partially'
+		}
+	];
+
+	$scope.getDayClass = function (date, mode) {
+		//console.log(data);
+		//var date = data.date,
+		//mode = data.mode;
+		if (mode === 'day') {
+			var dayToCheck = new Date(date).setHours(0,0,0,0);
+			for (var i = 0; i < $scope.events.length; i++) {
+				var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+				if (dayToCheck === currentDay) {
+					return $scope.events[i].status;
+				}
+			}
+		}
+		return '';
+	}
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>tu_test_datepicker</id>
+        <internal>false</internal>
+        <link/>
+        <name>Tu Test datepicker</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-12 19:41:16</sys_created_on>
+        <sys_id>7218fa8fdb1a8700b7065a6adc9619f5</sys_id>
+        <sys_mod_count>75</sys_mod_count>
+        <sys_name>Tu Test datepicker</sys_name>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sp_widget_7218fa8fdb1a8700b7065a6adc9619f5</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-14 09:02:30</sys_updated_on>
+        <template><![CDATA[<div class="col-sm-4 col-xs-8 col-sm-offset-4 col-xs-offset-2">
+  <p class="input-group">
+    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" custom-class="getDayClass(date,mode)" ng-model="dt" is-open="popup1.opened" datepicker-options="options" alt-input-formats="altInputFormats" />
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+  </p>
+</div>]]></template>
+    </sp_widget>
+</record_update>

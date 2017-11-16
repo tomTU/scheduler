@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $rootScope, spUtil) {
+	/* widget controller */
+	var c = this;
+
+	console.log(c.data.days)
+
+	$scope.showAppointment = function(appointment) {
+		$rootScope.$broadcast('showAppointmentForm', appointment.sys_id);
+	}
+
+	$scope.nextDate = function() {
+		c.data.dateChange = 'next';
+		c.server.update();
+	}
+
+	$scope.prevDate = function() {
+		c.data.dateChange = 'previous';
+		c.server.update();
+	}
+
+	$scope.findToday = function() {
+		c.data.dateChange = 'today';
+		c.server.update();
+	}
+
+	/* Date pickers */
+	$scope.today = function() {
+		$scope.dt = new Date();
+	};
+	$scope.today();
+
+	$scope.options = {
+		minDate: new Date(),
+		showWeeks: false,
+		startingDay: 1
+	};
+
+	$scope.getDayClass = function(date, mode) {
+		if (mode === 'day') {
+			var dayToCheck = new Date(date);
+			if (c.data.freeDates.indexOf(_constructHyphenDate(dayToCheck)) > -1) {
+				return "available-appointments";
+			}
+		}
+		return '';
+	}
+
+	/* Input date picker additions */
+	$scope.open1 = function() {
+		$scope.popup1.opened = true;
+	};
+
+	$scope.popup1 = {
+		opened: false
+	};
+
+	$scope.altInputFormats = ['M!/d!/yyyy'];
+
+	/* Date picker function used by both date pickers to select a new date */
+	$scope.changeDate = function(dt) {
+		if (dt == null) {
+			return;
+		}
+		//var yyyy = dt.getFullYear();
+		//var mm = dt.getMonth() + 1; // getMonth() is zero-based
+		//var dd = dt.getDate();
+		var newDate = _constructHyphenDate(dt);
+		c.data.dateChange = 'change';
+		c.data.newDate = newDate;
+		c.server.update();
+	}
+
+	// Record watcher
+	spUtil.recordWatch($scope, "x_mukl_scheduler_appointment", "", function(name, data){
+		// On update of ticket, if Requested For is populated/changed, we should 
+		// update the specific appointment object
+		console.log(name); // Returns information about the event that has occurred
+		var changes = name.data.changes;
+		var record = name.data.record;
+		if (changes.indexOf("requested_for") > -1) {
+			var appointment = _findRecord(name.data.sys_id);
+			if (appointment != "No record found") {
+				if (!record.requested_for) {
+					appointment.booked = false;
+				} else if (record.requested_for.value == ""){
+					appointment.booked = false;
+				} else {
+					appointment.booked = true;
+				}
+			}
+		}
+		console.log(c.data.days);
+	})
+
+	_findRecord = function(sys_id) {
+		// Loop through each day shown
+		for (var i = 0; i < 3; i++) {
+			// Check if appointments exist
+			var day = c.data.days[i];
+			if (day.length == 1) {
+				continue;
+			}
+			// Loop through each appointment in the day
+			for (var a = 0; a < day.length; a++) {
+				// If appointment object stored sys_id matches input sys_id, return this appointment object
+				if (day[a].sys_id == sys_id) {
+					return day[a];
+				}
+			}
+		}
+		return "No record found";
+	}
+
+	_constructHyphenDate = function(dt) {
+		if (dt == null) {
+			return;
+		}
+		var yyyy = dt.getFullYear();
+		var mm = dt.getMonth() + 1; // getMonth() is zero-based
+		mm = mm.toString().length == 1 ? "0" + mm : mm;
+		var dd = dt.getDate();
+		dd = dd.toString().length == 1 ? "0" + dd : dd;
+		return [yyyy, mm, dd].join("-");
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Date picker */
+.tu-date-picker-container {
+  text-align: center;
+}
+
+.tu-date-picker {
+  display:inline-block;
+  min-height:290px;
+}
+
+.available-appointments button {
+  background-color: limegreen;
+  color: black;
+}
+
+/* Buttons */
+.tu-change-buttons{
+  margin: 10px 10px;
+  height: 40px;
+  text-align: center;
+}
+
+.tu-button-change {
+  background-color: #009DDC;
+  color: #fff;
+}
+
+#tu-prev-button {
+  float: left;
+}
+
+#tu-next-button {
+  float: right;
+}
+
+/* Panels */
+.tu-panel-day {
+  text-align: center;
+}
+
+.tu-panels {
+  clear: both;
+}
+
+.tu-button-appointment {
+  padding: 6px 20px;
+  margin: 5px 7px;
+}
+
+.booked-true {
+  pointer-events: none;
+  background-color: #d3d3d3;
+  color: #5b5b5b;
+  border-color: #d3d3d3;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>tu_appointment_picker</id>
+        <internal>false</internal>
+        <link/>
+        <name>TU Appointment picker</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	var appUtils = new tuSchedulerAppUtils();
+	
+	var gaFreeAppointments = new GlideAggregate('x_mukl_scheduler_appointment');
+	gaFreeAppointments.addQuery('active', true);
+	gaFreeAppointments.addAggregate('COUNT(DISTINCT', 'appointment_date');
+	gaFreeAppointments.query();
+	
+	var freeDates = [];
+	while (gaFreeAppointments.next()) {
+		freeDates.push(gaFreeAppointments.appointment_date.toString());
+	}
+	data.freeDates = freeDates;
+	console.log(freeDates.toString());
+	
+	if (!input) {
+
+		data.widgetForm = $sp.getWidget("tu_make_appointment");
+
+		// I'm going to try returning only 1 daily record and getting that records appointments, to try and not pull back too much in one go
+		// but this might result in too many server calls later on so testing this first.
+		data.days = [];
+		
+		var gr = new GlideRecord('x_mukl_scheduler_scheduled_day');
+		gr.addQuery('active', true);
+		gr.orderBy('date');
+		gr.setLimit(1);
+		gr.query();
+
+		// Set first date to day before the first appointment, so that the first appointment appears in the centre
+		var firstDate;
+		if (gr.next()) {
+			firstDate = new GlideDateTime(gr.date);
+		} else {
+			firstDate = new GlideDateTime();
+		}
+		firstDate.addDaysLocalTime(-1); // We remove one day so the target day is the centre day of the 3
+
+		data.days = appUtils.createDaysArray(firstDate.getDate());
+
+	} else if (input.dateChange == 'next') {
+		
+		data.days = input.days;
+		data.days.push(editArray(appUtils, '2', 0, 1));
+		
+	} else if (input.dateChange == 'previous') {
+		
+		data.days = input.days;
+		data.days.unshift(editArray(appUtils, '0', data.days.length - 1, -1));
+		
+	} else if (input.dateChange == 'today') {
+		
+		var today = new GlideDateTime();
+		today.addDaysLocalTime(-1);
+		data.days = appUtils.createDaysArray(today.getDate());
+		
+	} else if (input.dateChange == 'change') {
+		
+		var day = new GlideDateTime(input.newDate);
+		day.addDaysLocalTime(-1);
+		data.days = appUtils.createDaysArray(day.getDate());
+		
+	}
+
+})();
+
+function editArray(appUtils, arrayNum, spliceNum, addDays) {
+	/* 
+	*  This function removes the array date that is no longer required
+	*  and then calls the createAppointmentsArray function to add the new date
+	*  to the array
+	*/
+	var ArrayDate = data.days[arrayNum][0].date.toString();
+	data.days.splice(spliceNum, 1);
+	var gdtNewDay = new GlideDateTime(ArrayDate + " 12:00:00");
+	gdtNewDay.addDaysLocalTime(addDays);
+	return appUtils.createAppointmentsArray(gdtNewDay);
+}
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 19:41:22</sys_created_on>
+        <sys_id>535b5786db9e0700b7065a6adc961910</sys_id>
+        <sys_mod_count>443</sys_mod_count>
+        <sys_name>TU Appointment picker</sys_name>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sp_widget_535b5786db9e0700b7065a6adc961910</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-15 16:52:24</sys_updated_on>
+        <template><![CDATA[<!-- Inline date picker -->
+<div class="tu-date-picker-container hidden-sm hidden-xs">
+  <div class="tu-date-picker">
+    <div uib-datepicker ng-model="dt" class="well well-sm" custom-class="getDayClass(date, mode)" datepicker-options="options" ng-change="changeDate(dt)"></div>
+  </div>
+</div>
+
+<!-- Input date picker -->
+<div class="row">
+  <div class="visible-xs visible-sm col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+    <p class="input-group">
+      <input uib-datepicker-popup="dd/MM/yyyy" type="text" class="form-control" custom-class="getDayClass(date, mode)" ng-model="dt" is-open="popup1.opened" datepicker-options="options" alt-input-formats="altInputFormats" ng-change="changeDate(dt)"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </div>  
+</div>
+
+<!-- Buttons -->
+<div class="tu-change-buttons">
+  <button type="button" id="tu-prev-button" class="btn tu-button-change" ng-click="prevDate()">&larr; Previous</button>
+  <button type="button" id="tu-today-button" class="btn tu-button-change" ng-click="findToday()">Go to today</button>
+  <button type="button" id="tu-next-button" class="btn tu-button-change" ng-click="nextDate()">Next &rarr;</button>
+</div>
+
+<!-- Panels -->
+<div class="container">
+  <div class="row">
+    <div class="tu-panels">
+      <div ng-repeat="day in c.data.days" class="tu-panel-day col-sm-4" ng-class="{'hidden-xs':$first || $last}">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">{{day[0].display}}</div>
+          <div class="panel-body">
+            <p ng-if="day.length == 1">No appointments available</p>
+            <button ng-if="!$first" ng-repeat="appointment in day" type="button" class="btn btn-primary tu-button-appointment" ng-disabled="appointment.booked" ng-click="showAppointment(appointment)" data-toggle="modal" data-target="#appointmentModal">{{appointment.start}}</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="appointmentModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <sp-widget widget="c.data.widgetForm"></sp-widget>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>]]></template>
+    </sp_widget>
+</record_update>

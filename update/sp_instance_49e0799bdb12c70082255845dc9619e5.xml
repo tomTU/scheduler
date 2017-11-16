@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>0</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">88e0b59bdb12c70082255845dc9619d1</sp_column>
+        <sp_widget display_value="HTML">8679ef89cb21120000f8d856634c9c4f</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-13 09:08:36</sys_created_on>
+        <sys_id>49e0799bdb12c70082255845dc9619e5</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sp_instance_49e0799bdb12c70082255845dc9619e5</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-15 12:18:00</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"html": {
+		"value": "<p>To do list:</p>\n<ol>\n<li>Create live record updates</li>\n<li>Configure appointments to be based on location</li>\n<li>Configure appointment picker to show appointments based on location</li>\n<li>Configure appointment picker to show multiple types, (could add a choice field in Portal to select type?)</li>\n<li>Fix start time changing on appointment click</li>\n<li>Add styling to appointment picker</li>\n</ol>",
+		"displayValue": "<p>To do list:</p>\n<ol>\n<li>Create live record updates</li>\n<li>Configure appointments to be based on location</li>\n<li>Configure appointment picker to show appointments based on location</li>\n<li>Configure appointment picker to show multiple types, (could add a choice field in Portal to select type?)</li>\n<li>Fix start time changing on appointment click</li>\n<li>Add styling to appointment picker</li>\n</ol>"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=49e0799bdb12c70082255845dc9619e5"/>
+</record_update>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="appointment_duration" label="Appointment duration" language="en" table="x_mukl_scheduler_scheduler">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>appointment_duration</element>
+            <help/>
+            <hint/>
+            <label>Appointment duration</label>
+            <language>en</language>
+            <name>x_mukl_scheduler_scheduler</name>
+            <plural>Appointment durations</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 13:52:55</sys_created_on>
+            <sys_id>3a9b4a0adbda0700b7065a6adc9619d0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Appointment duration</sys_name>
+            <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name>sys_documentation_x_mukl_scheduler_scheduler_appointment_duration_en</sys_update_name>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 13:52:55</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

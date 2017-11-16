@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_app">
+    <sys_app action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <enforce_license>log</enforce_license>
+        <js_level>helsinki_es5</js_level>
+        <licensable>true</licensable>
+        <license_model>none</license_model>
+        <logo/>
+        <menu display_value="Scheduler">1aca020adbda0700b7065a6adc9619f5</menu>
+        <name>Scheduler</name>
+        <private>false</private>
+        <restrict_table_access>false</restrict_table_access>
+        <runtime_access_tracking>permissive</runtime_access_tracking>
+        <scope>x_mukl_scheduler</scope>
+        <scoped_administration>false</scoped_administration>
+        <short_description/>
+        <source>x_mukl_scheduler</source>
+        <store_correlation_id/>
+        <store_url/>
+        <sys_class_name>sys_app</sys_class_name>
+        <sys_code/>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 13:49:20</sys_created_on>
+        <sys_id>0aca8a86dbda0700b7065a6adc96191b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-09 13:49:20</sys_updated_on>
+        <template/>
+        <trackable>true</trackable>
+        <user_role display_value="x_mukl_scheduler.user" name="x_mukl_scheduler.user">96ca020adbda0700b7065a6adc9619f8</user_role>
+        <vendor/>
+        <vendor_prefix/>
+        <version>1.0.0</version>
+    </sys_app>
+</record_update>

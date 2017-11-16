@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Scheduled Day" max_length="40" name="x_mukl_scheduler_scheduled_day" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Date" max_length="40" name="date" type="glide_date"/>
+        <element label="Scheduler" max_length="32" name="scheduler" reference="x_mukl_scheduler_scheduler" type="reference"/>
+        <index name="index">
+            <element name="scheduler"/>
+        </index>
+    </element>
+</database>

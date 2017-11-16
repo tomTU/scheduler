@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Scheduler">1aca020adbda0700b7065a6adc9619f5</application>
+        <assessment/>
+        <content_page/>
+        <device_type/>
+        <filter table="x_mukl_scheduler_appointment">active=true^EQ<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>LIST</link_type>
+        <map_page/>
+        <mobile_title>Appointments</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name>x_mukl_scheduler_appointment</name>
+        <order>300</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query>^ORDERBYappointment_date^ORDERBYappointment_start</query>
+        <report/>
+        <roles>x_mukl_scheduler.user</roles>
+        <survey/>
+        <survey_overwrite>true</survey_overwrite>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 16:45:27</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>461372cedb1e0700b7065a6adc9619d5</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Appointments</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sys_app_module_461372cedb1e0700b7065a6adc9619d5</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-15 10:44:18</sys_updated_on>
+        <timeline_page/>
+        <title>Appointments</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

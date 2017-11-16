@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Scheduler" max_length="40" name="x_mukl_scheduler_scheduler" type="collection">
+        <element choice="3" default="30" label="Appointment duration" max_length="40" name="appointment_duration" type="choice">
+            <choice>
+                <element label="30 minutes" sequence="1" value="30"/>
+                <element label="45 minutes" sequence="2" value="45"/>
+                <element label="1 hour" sequence="3" value="60"/>
+            </choice>
+        </element>
+        <element label="End Date" max_length="40" name="end_date" type="glide_date"/>
+        <element default="17:00:00" label="End time" max_length="40" name="end_time" type="glide_time"/>
+        <element label="Location" max_length="32" name="location" reference="cmn_location" type="reference"/>
+        <element display="true" label="Name" max_length="40" name="name" type="string"/>
+        <element default="1" label="Parallel appointments" max_length="40" name="parallel_appointments" type="integer"/>
+        <element default="090eecae0a0a0b260077e1dfa71da828" label="Schedule" max_length="32" name="schedule" reference="cmn_schedule" type="reference"/>
+        <element label="Start date" max_length="40" name="start_date" type="glide_date"/>
+        <element default="08:00:00" label="Start time" max_length="40" name="start_time" type="glide_time"/>
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <index name="index">
+            <element name="schedule"/>
+        </index>
+        <index name="index2">
+            <element name="location"/>
+        </index>
+    </element>
+</database>

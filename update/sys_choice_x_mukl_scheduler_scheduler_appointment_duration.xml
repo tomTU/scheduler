@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="appointment_duration" table="x_mukl_scheduler_scheduler" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>appointment_duration</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>30 minutes</label>
+            <language>en</language>
+            <name>x_mukl_scheduler_scheduler</name>
+            <sequence>1</sequence>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 15:38:25</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7eb3eac6db1e0700b7065a6adc9619b2</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 15:38:29</sys_updated_on>
+            <value>30</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>appointment_duration</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>45 minutes</label>
+            <language>en</language>
+            <name>x_mukl_scheduler_scheduler</name>
+            <sequence>2</sequence>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 15:38:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>50c32ec6db1e0700b7065a6adc961999</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 15:38:36</sys_updated_on>
+            <value>45</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>appointment_duration</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>1 hour</label>
+            <language>en</language>
+            <name>x_mukl_scheduler_scheduler</name>
+            <sequence>3</sequence>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 15:38:40</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>dac36ec6db1e0700b7065a6adc961912</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 15:38:43</sys_updated_on>
+            <value>60</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>appointment_duration</element>
+            <name>x_mukl_scheduler_scheduler</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 15:38:25</sys_created_on>
+            <sys_id>94c3eac6db1e0700b7065a6adc9619d7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>appointment_duration</sys_name>
+            <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name>sys_choice_x_mukl_scheduler_scheduler_appointment_duration</sys_update_name>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 15:38:25</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

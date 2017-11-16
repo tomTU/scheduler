@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="parallel_appointments" label="Parallel appointments" language="en" table="x_mukl_scheduler_scheduler">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>parallel_appointments</element>
+            <help/>
+            <hint/>
+            <label>Parallel appointments</label>
+            <language>en</language>
+            <name>x_mukl_scheduler_scheduler</name>
+            <plural>Parallel appointments</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>thomas.cummins@teamultra.net</sys_created_by>
+            <sys_created_on>2017-11-09 14:49:14</sys_created_on>
+            <sys_id>b378d6cedbda0700b7065a6adc961977</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_name>Parallel appointments</sys_name>
+            <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+            <sys_update_name>sys_documentation_x_mukl_scheduler_scheduler_parallel_appointments_en</sys_update_name>
+            <sys_updated_by>thomas.cummins@teamultra.net</sys_updated_by>
+            <sys_updated_on>2017-11-09 14:49:20</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>generate_appointments</action_name>
+        <active>true</active>
+        <client>true</client>
+        <comments/>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>false</form_button>
+        <form_context_menu>false</form_context_menu>
+        <form_link>true</form_link>
+        <form_style/>
+        <hint/>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <name>Generate Appointments</name>
+        <onclick>checkFields()</onclick>
+        <order>100</order>
+        <script><![CDATA[function checkFields() {
+
+	try {
+		// 		var genApps = confirm("Do you want to generate " + g_form.getValue('parallel_appointments') + 
+		// 							" appointments every " + g_form.getValue('appointment_duration') + 
+		// 							" minutes between " + g_form.getValue('start_date') +
+		// 							" and " + g_form.getValue('end_date') + "?");
+
+		var fields = ['schedule', 'parallel_appointments', 'start_date', 'end_date'];
+		for (var i = 0; i < fields.length; i++) {
+			g_form.setMandatory(fields[i], true);
+		}
+
+		gsftSubmit(null, g_form.getFormElement(), "generate_appointments"); //MUST call the 'Action name' set in this UI Action
+
+	} catch(err) {
+		alert("Error - " + err);
+	}
+}
+
+if (typeof window == 'undefined') {
+	generate();
+}
+
+function generate() {
+	/* To start, we want to loop through each day between start and end date an generate a record for each day.
+	*  While looping, for each day, we want to generate appointments between start 
+	*  and end time IF the appointments are within the schedule
+	*/ 
+	var sched = new GlideSchedule(current.schedule);
+	var appUtils = new tuSchedulerAppUtils(); 
+
+	/* === Calc dates === */
+	var gdtInitDate = new GlideDateTime(current.start_date + " 12:00:00");
+	var gdtEndDate = new GlideDateTime(current.end_date + " 12:00:01");
+
+	/* === Calc Times === */
+	// Set start and end times
+	var startTimeStr = appUtils.getTime(current.start_time);
+	var endTimeStr = appUtils.getTime(current.end_time);
+	// Get number of milliseconds per duration, 1 minute = 60000 milliseconds
+	var milliSec = current.appointment_duration * 60000;
+
+	var gdtStartTime = new GlideDateTime(current.start_date + " " + startTimeStr);
+	var gdtFinishTime = new GlideDateTime(current.start_date + " " + endTimeStr);
+
+	// Everything before here only needs to be calculated once
+
+	// While new date is before End date
+	while (gdtInitDate.before(gdtEndDate)) {
+		// First, we create a record per day between start and end date
+		if (!sched.isInSchedule(gdtInitDate)) {
+			gdtInitDate.addDaysLocalTime(1);
+			gdtStartTime.addDaysLocalTime(1);
+			gdtFinishTime.addDaysLocalTime(1);
+			continue;
+		}
+		var grDay = new GlideRecord('x_mukl_scheduler_scheduled_day');
+		grDay.initialize();
+		grDay.date = gdtInitDate.getDate();
+		grDay.scheduler = current.sys_id;
+		var scheduledDay = grDay.insert();
+
+		// Next we generate appointments for the day
+		// Calc start of first appointment
+		var gdtAppStart = new GlideDateTime(gdtStartTime);
+		// Calc end of first appointment, minus 1 second, 
+		var gdtAppEnd = new GlideDateTime(gdtStartTime);
+		gdtAppEnd.add(milliSec - 1000);
+
+		// While the end of the next appointment is before the end of the final appointment
+		while (gdtAppEnd.before(gdtFinishTime)) {
+			// Check that the appointment is within the schedule
+			if (sched.isInSchedule(gdtAppStart) && sched.isInSchedule(gdtAppEnd)) {
+				var grApp = new GlideRecord('x_mukl_scheduler_appointment');
+				grApp.initialize();
+				grApp.appointment_date = gdtAppStart;
+				grApp.date = scheduledDay;
+				grApp.appointment_start = appUtils.getTime(gdtAppStart);
+				// Add 1 second to end time to give a nice round number on the form
+				gdtAppEnd.add(1000);
+				grApp.appointment_end = appUtils.getTime(gdtAppEnd);
+				gdtAppEnd.add(-1000);
+				var y = grApp.insert();
+			}
+			// Add number of milliseconds for an appointment to calculate the next appointment times
+			gdtAppStart.add(milliSec);
+			gdtAppEnd.add(milliSec);
+		}
+
+		// Add day to create values for the next day
+		gdtInitDate.addDaysLocalTime(1);
+		gdtStartTime.addDaysLocalTime(1);
+		gdtFinishTime.addDaysLocalTime(1);
+	}
+
+	current.update();
+	action.setRedirectURL(current);
+}
+
+function _msg(msg) {
+	gs.addInfoMessage(msg);
+}
+
+function _getTime(gdt) {
+	var time = gdt.toString().contains(" ") ? gdt.toString().split(" ")[1] : gdt;
+	return time;
+}]]></script>
+        <show_insert>true</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>thomas.cumins@teamultra.net</sys_created_by>
+        <sys_created_on>2017-11-09 16:54:35</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>f2743602db5e0700b7065a6adc9619e8</sys_id>
+        <sys_mod_count>42</sys_mod_count>
+        <sys_name>Generate Appointments</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Scheduler" source="x_mukl_scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Scheduler">0aca8a86dbda0700b7065a6adc96191b</sys_scope>
+        <sys_update_name>sys_ui_action_f2743602db5e0700b7065a6adc9619e8</sys_update_name>
+        <sys_updated_by>thomas.cumins@teamultra.net</sys_updated_by>
+        <sys_updated_on>2017-11-15 10:54:29</sys_updated_on>
+        <table>x_mukl_scheduler_scheduler</table>
+        <ui11_compatible>true</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

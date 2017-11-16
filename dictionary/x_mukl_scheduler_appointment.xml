@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Appointment" max_length="40" name="x_mukl_scheduler_appointment" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Appointment date" max_length="40" name="appointment_date" type="glide_date"/>
+        <element label="Appointment end" max_length="40" name="appointment_end" type="glide_time"/>
+        <element label="Appointment start" max_length="40" name="appointment_start" type="glide_time"/>
+        <element label="Assignee" max_length="32" name="assignee" reference="sys_user" type="reference"/>
+        <element label="Scheduled Day" max_length="32" name="date" reference="x_mukl_scheduler_scheduled_day" reference_cascade_rule="cascade" type="reference"/>
+        <element label="Description" max_length="1000" name="description" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Requested for" max_length="32" name="requested_for" reference="sys_user" type="reference"/>
+        <element choice="1" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element label="Laptop" sequence="0" value="Laptop"/>
+                <element label="Mobile" sequence="1" value="Mobile"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="date"/>
+        </index>
+        <index name="index2">
+            <element name="assignee"/>
+        </index>
+        <index name="index3">
+            <element name="requested_for"/>
+        </index>
+    </element>
+</database>
